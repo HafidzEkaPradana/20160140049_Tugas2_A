@@ -7,8 +7,20 @@ using System.Data.SqlClient;
 
 namespace _20160140049_Tugas2_A
 {
+    /// <summary>
+    /// Class Toko
+    /// </summary>
     class Toko
     {
+        /// <summary>
+        /// Method DisplayMenuToko
+        /// </summary>
+        /// <remarks>Untuk menampilkan menu di toko</remarks>
+
+        string constring = "data source=LAPTOP-8MKEQ456; " +
+                 "database=Tugas2PABD; Integrated Security=True; User ID=sa;Password=mentepermaib20";
+        SqlConnection connection;
+        SqlCommand com;
         public void DisplayMenuToko()
         {
             int menu;
@@ -52,6 +64,10 @@ namespace _20160140049_Tugas2_A
             }
             Console.ReadLine();
         }
+        /// <summary>
+        /// Method TambahToko
+        /// </summary>
+        /// <remarks>Untuk menambahkan data ke dalam tabel Toko di SQL</remarks>
         public void TambahToko()
         {
 
@@ -67,14 +83,13 @@ namespace _20160140049_Tugas2_A
 
             try
             {
-                SqlConnection con = new SqlConnection("data source=LAPTOP-8MKEQ456; " +
-                 "database=Tugas2PABD; Integrated Security=True; User ID=sa;Password=mentepermaib20");
-                con.Open();
-
-                SqlCommand sql = new SqlCommand("insert into dbo.Customer (ID_Toko,NamaToko,Loaksi,Pemilik) values ('" + idToko + "', '" + namaToko + "', '" + lokasi + "', '" + pemilik + "')", con);
-                sql.ExecuteNonQuery();
+                string sql = "insert into dbo.Toko (ID_Toko,NamaToko,Loaksi,Pemilik) values ('" + idToko + "', '" + namaToko + "', '" + lokasi + "', '" + pemilik + "')";
+                connection = new SqlConnection(constring);
+                com = new SqlCommand(sql, connection);
+                connection.Open();
+                com.ExecuteNonQuery();
+                connection.Close();
                 Console.WriteLine("Data berhasil ditambahkan");
-                con.Close();
             }
             catch (Exception e)
             {

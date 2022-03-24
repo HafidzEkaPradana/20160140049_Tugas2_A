@@ -7,8 +7,19 @@ using System.Data.SqlClient;
 
 namespace _20160140049_Tugas2_A
 {
+    /// <summary>
+    /// Transaksi Class
+    /// </summary>
     class Transaksi
     {
+        /// <summary>
+        /// Method DisplayMenuTransaksi
+        /// </summary>
+        /// <remarks>Untuk menampilkan menu di Transaksi</remarks>
+        string constring = "data source=LAPTOP-8MKEQ456; " +
+                 "database=Tugas2PABD; Integrated Security=True; User ID=sa;Password=mentepermaib20";
+        SqlConnection connection;
+        SqlCommand com;
         public void DisplayMenuTransaksi()
         {
             int menu;
@@ -53,6 +64,10 @@ namespace _20160140049_Tugas2_A
             }
             Console.ReadLine();
         }
+        /// <summary>
+        /// Method SewaToko
+        /// </summary>
+        /// <remarks>Untuk menambahkan transaksi sewa kedalam tabel Transaksi di SQL</remarks>
         public void SewaToko()
         {
 
@@ -70,14 +85,14 @@ namespace _20160140049_Tugas2_A
 
             try
             {
-                SqlConnection con = new SqlConnection("data source=LAPTOP-8MKEQ456; " +
-                 "database=Tugas2PABD; Integrated Security=True; User ID=sa;Password=mentepermaib20");
-                con.Open();
-
-                SqlCommand sql = new SqlCommand("insert into dbo.Customer (ID_Customer,NamaCustomer,Alamat,Jenis_Kelamin) values ('" + idTransaksi + "', '" + biaya + "', '" + kontrak + "', '" + idCustomer + "', '" + idToko + "')", con);
-                sql.ExecuteNonQuery();
+                string sql = "insert into dbo.Transaksi (ID_Transaksi,Biaya,ID_Toko,ID_Customer) values " +
+                    "('" + idTransaksi + "', '" + biaya + "', '" + kontrak + "', 'select into dbo.Toko where id','" + idToko + "' , 'select into dbo.Customer where id', '" + idCustomer + "')";
+                connection = new SqlConnection(constring);
+                com = new SqlCommand(sql, connection);
+                connection.Open();
+                com.ExecuteNonQuery();
+                connection.Close();
                 Console.WriteLine("Data berhasil ditambahkan");
-                con.Close();
             }
             catch (Exception e)
             {
@@ -93,6 +108,10 @@ namespace _20160140049_Tugas2_A
                 new Transaksi().DisplayMenuTransaksi();
             }
 
+
+        }
+        public void AmbilDataTransaksi()
+        {
 
         }
     }

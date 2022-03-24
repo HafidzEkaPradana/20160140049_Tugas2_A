@@ -7,9 +7,20 @@ using System.Threading.Tasks;
 
 namespace _20160140049_Tugas2_A
 {
+    /// <summary>
+    /// Customer Class
+    /// </summary>
 
     class Customer
     {
+        string constring = "data source=LAPTOP-8MKEQ456; " +
+                 "database=Tugas2PABD; Integrated Security=True; User ID=sa;Password=mentepermaib20";
+        SqlConnection connection;
+        SqlCommand com;
+        /// <summary>
+        /// Method DisplayMenuCustomer
+        /// </summary>
+        /// <remarks>Untuk menampilkan menu di Customer</remarks>
         public void DisplayMenuCustomer()
         {
             int menu;
@@ -60,6 +71,10 @@ namespace _20160140049_Tugas2_A
             }
             Console.ReadLine();
         }
+        /// <summary>
+        /// Method TambahCustomer
+        /// </summary>
+        /// <remarks>Untuk menambahkan customer kedalam tabel Customer di SQL</remarks>
         public void TambahCustomer()
         {
 
@@ -75,14 +90,14 @@ namespace _20160140049_Tugas2_A
 
             try
             {
-                SqlConnection con = new SqlConnection("data source=LAPTOP-8MKEQ456; " +
-                 "database=Tugas2PABD; Integrated Security=True; User ID=sa;Password=mentepermaib20");
-                con.Open();
  
-                SqlCommand sql = new SqlCommand ("insert into dbo.Customer (ID_Customer,NamaCustomer,Alamat,Jenis_Kelamin) values ('" + idCustomer + "', '" + nama + "', '" + alamat + "', '" + jenis + "')", con);
-                sql.ExecuteNonQuery();
+                string sql =  "insert into dbo.Customer (ID_Customer,NamaCustomer,Alamat,Jenis_Kelamin) values ('" + idCustomer + "', '" + nama + "', '" + alamat + "', '" + jenis + "')";
+                connection = new SqlConnection(constring);
+                com = new SqlCommand(sql, connection);
+                connection.Open();
+                com.ExecuteNonQuery();
+                connection.Close();
                 Console.WriteLine("Data berhasil ditambahkan");
-                con.Close();
             }
             catch(Exception e)
             {
@@ -98,6 +113,11 @@ namespace _20160140049_Tugas2_A
                 new Customer().DisplayMenuCustomer();
             }
 
+
+        }
+
+        public void AmbilDataCustomer()
+        {
 
         }
 

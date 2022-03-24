@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace _20160140049_Tugas2_A
 {
+    /// <summary>
+    /// Main class
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Main Method
+        /// </summary>
         static void Main(string[] args)
         {
             //memanggil method koneksi
@@ -20,6 +26,9 @@ namespace _20160140049_Tugas2_A
             
         }
 
+        /// <summary>
+        /// Method Koneksi
+        /// </summary>
         public void Connection()
         {
             
@@ -32,6 +41,9 @@ namespace _20160140049_Tugas2_A
             }
         }
 
+        /// <summary>
+        /// Method Tampilan
+        /// </summary>
         public void Tampilan()
         {
             //Untuk tampilan
@@ -43,6 +55,9 @@ namespace _20160140049_Tugas2_A
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Method Menu
+        /// </summary>
         public void Menu()
         {
 
