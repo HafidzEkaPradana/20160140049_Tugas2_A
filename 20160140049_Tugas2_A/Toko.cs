@@ -17,6 +17,8 @@ namespace _20160140049_Tugas2_A
         /// </summary>
         /// <remarks>Untuk menampilkan menu di toko</remarks>
 
+
+        
         string constring = "data source=LAPTOP-8MKEQ456; " +
                  "database=Tugas2PABD; Integrated Security=True; User ID=sa;Password=mentepermaib20";
         SqlConnection connection;
@@ -30,8 +32,7 @@ namespace _20160140049_Tugas2_A
             Console.WriteLine();
             Console.WriteLine("1. Tambah Toko");
             Console.WriteLine("2. Daftar Toko");
-            Console.WriteLine("3. Kembali Menu Toko");
-            Console.WriteLine("4. Kembali ke Home");
+            Console.WriteLine("3. Kembali ke Home");
             Console.WriteLine("");
             Console.Write("Pilih Menu 1/2/3 : ");
             menu = Convert.ToInt32(Console.ReadLine());
@@ -47,12 +48,7 @@ namespace _20160140049_Tugas2_A
                 new Program().Tampilan();
                 Console.WriteLine("Belum ada data");
             }
-            else if (menu == 3)
-            {
-                Console.Clear();
-                new Program().Tampilan();
-                new Toko().DisplayMenuToko();
-            }else if(menu == 4)
+            else if(menu == 3)
             {
                 Console.Clear();
                 new Program().Tampilan();
@@ -61,6 +57,11 @@ namespace _20160140049_Tugas2_A
             else
             {
                 Console.WriteLine("Tidak ada menu tersebut");
+                Console.WriteLine("Tekan tombol apapun untuk kembali");
+                Console.ReadKey();
+                Console.Clear();
+                new Program().Tampilan();
+                new Program().Menu();
             }
             Console.ReadLine();
         }
@@ -105,6 +106,14 @@ namespace _20160140049_Tugas2_A
                 new Toko().DisplayMenuToko();
             }
 
+
+        }
+        /// <summary>
+        /// Method AmbilDataToko
+        /// </summary>
+        /// <remarks>Untuk mengambil data dari database</remarks>
+        public void AmbilDataToko()
+        {
 
         }
     }

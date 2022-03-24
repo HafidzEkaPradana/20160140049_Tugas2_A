@@ -30,8 +30,7 @@ namespace _20160140049_Tugas2_A
             Console.WriteLine();
             Console.WriteLine("1. Tambah Customer");
             Console.WriteLine("2. Daftar Customer");
-            Console.WriteLine("3. Kembali Menu Customer");
-            Console.WriteLine("4. Kembali ke Home");
+            Console.WriteLine("3. Kembali ke Home");
             Console.WriteLine("");
             Console.Write("Pilih Menu 1/2/3 : ");
             menu = Convert.ToInt32(Console.ReadLine());
@@ -45,15 +44,9 @@ namespace _20160140049_Tugas2_A
             {
                 Console.Clear();
                 new Program().Tampilan();
-                Console.WriteLine("Belum ada data");
+                new Customer().AmbilDataCustomer();
             }
             else if (menu == 3)
-            {
-                Console.Clear();
-                new Program().Tampilan();
-                new Customer().DisplayMenuCustomer();
-            }
-            else if (menu == 4)
             {
                 Console.Clear();
                 new Program().Tampilan();
@@ -61,7 +54,6 @@ namespace _20160140049_Tugas2_A
             }
             else
             {
-                Console.WriteLine("Tidak ada menu tersebut");
                 Console.WriteLine("Tidak ada menu tersebut");
                 Console.WriteLine("Tekan tombol apapun untuk kembali");
                 Console.ReadKey();
@@ -115,11 +107,26 @@ namespace _20160140049_Tugas2_A
 
 
         }
-
+        /// <summary>
+        /// Method AmbilDataCustomer
+        /// </summary>
+        /// <remarks>Untuk mengambil data dari database</remarks>
         public void AmbilDataCustomer()
         {
-
+            string sql = "select ID_Customer, NamaCustomer, Alamat, Jenis_Kelamin from dbo.Customer";
+            connection = new SqlConnection(constring);
+            com = new SqlCommand(sql, connection);
+            connection.Open();
+            SqlDataReader reader = com.ExecuteReader();
+            connection.Close();
+            Console.WriteLine("Sudah dipanggil tetapi belum ditampilkan");
+            Console.WriteLine();
+            Console.Write("Tekan apapun Untuk kembali");
+            Console.Clear();
+            new Program().Tampilan();
+            new Customer().DisplayMenuCustomer();
         }
+        
 
     }
 }

@@ -29,8 +29,7 @@ namespace _20160140049_Tugas2_A
             Console.WriteLine();
             Console.WriteLine("1. Sewa Toko");
             Console.WriteLine("2. Daftar Sewa");
-            Console.WriteLine("3. Kembali Menu Transaksi");
-            Console.WriteLine("4. Kembali ke Home");
+            Console.WriteLine("3. Kembali ke Home");
             Console.WriteLine("");
             Console.Write("Pilih Menu 1/2/3 : ");
             menu = Convert.ToInt32(Console.ReadLine());
@@ -50,17 +49,16 @@ namespace _20160140049_Tugas2_A
             {
                 Console.Clear();
                 new Program().Tampilan();
-                new Customer().DisplayMenuCustomer();
-            }
-            else if (menu == 4)
-            {
-                Console.Clear();
-                new Program().Tampilan();
                 new Program().Menu();
             }
             else
             {
                 Console.WriteLine("Tidak ada menu tersebut");
+                Console.WriteLine("Tekan tombol apapun untuk kembali");
+                Console.ReadKey();
+                Console.Clear();
+                new Program().Tampilan();
+                new Program().Menu();
             }
             Console.ReadLine();
         }
@@ -110,6 +108,10 @@ namespace _20160140049_Tugas2_A
 
 
         }
+        /// <summary>
+        /// Method AmbilDataTransaksi
+        /// </summary>
+        /// <remarks>Untuk mengambil data dari database</remarks>
         public void AmbilDataTransaksi()
         {
 
