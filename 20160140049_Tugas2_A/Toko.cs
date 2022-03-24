@@ -9,14 +9,17 @@ namespace _20160140049_Tugas2_A
 {
     class Toko
     {
-        public void DisplayToko()
+        public void DisplayMenuToko()
         {
             int menu;
-            Console.WriteLine("Menu :");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Toko :");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
             Console.WriteLine("1. Tambah Toko");
             Console.WriteLine("2. Daftar Toko");
-            Console.WriteLine("3. Kembali ke Menu awal");
+            Console.WriteLine("3. Kembali Menu Toko");
+            Console.WriteLine("4. Kembali ke Home");
             Console.WriteLine("");
             Console.Write("Pilih Menu 1/2/3 : ");
             menu = Convert.ToInt32(Console.ReadLine());
@@ -24,7 +27,24 @@ namespace _20160140049_Tugas2_A
             {
                 Console.Clear();
                 new Program().Tampilan();
-                new Customer().TambahToko();
+                new Toko().TambahToko();
+            }
+            else if (menu == 2)
+            {
+                Console.Clear();
+                new Program().Tampilan();
+                Console.WriteLine("Belum ada data");
+            }
+            else if (menu == 3)
+            {
+                Console.Clear();
+                new Program().Tampilan();
+                new Toko().DisplayMenuToko();
+            }else if(menu == 4)
+            {
+                Console.Clear();
+                new Program().Tampilan();
+                new Program().Menu();
             }
             else
             {
@@ -37,13 +57,13 @@ namespace _20160140049_Tugas2_A
 
             Console.WriteLine("Tambah :");
             Console.Write("ID_Toko   : ");
-            int idCustomer = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Nama Customer : ");
-            string nama = Convert.ToString(Console.ReadLine());
-            Console.Write("Alamat : ");
-            string alamat = Convert.ToString(Console.ReadLine());
-            Console.Write("Jenis Kelamin (L/P): ");
-            string jenis = Convert.ToString(Console.ReadLine());
+            int idToko = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Nama Toko : ");
+            string namaToko = Convert.ToString(Console.ReadLine());
+            Console.Write("Lokasi : ");
+            string lokasi = Convert.ToString(Console.ReadLine());
+            Console.Write("Pemilik : ");
+            string pemilik = Convert.ToString(Console.ReadLine());
 
             try
             {
@@ -51,7 +71,7 @@ namespace _20160140049_Tugas2_A
                  "database=Tugas2PABD; Integrated Security=True; User ID=sa;Password=mentepermaib20");
                 con.Open();
 
-                SqlCommand sql = new SqlCommand("insert into dbo.Customer (ID_Customer,NamaCustomer,Alamat,Jenis_Kelamin) values ('" + idCustomer + "', '" + nama + "', '" + alamat + "', '" + jenis + "')", con);
+                SqlCommand sql = new SqlCommand("insert into dbo.Customer (ID_Toko,NamaToko,Loaksi,Pemilik) values ('" + idToko + "', '" + namaToko + "', '" + lokasi + "', '" + pemilik + "')", con);
                 sql.ExecuteNonQuery();
                 Console.WriteLine("Data berhasil ditambahkan");
                 con.Close();
@@ -67,7 +87,7 @@ namespace _20160140049_Tugas2_A
             {
                 Console.Clear();
                 new Program().Tampilan();
-                new Customer().DisplayCustomer();
+                new Toko().DisplayMenuToko();
             }
 
 

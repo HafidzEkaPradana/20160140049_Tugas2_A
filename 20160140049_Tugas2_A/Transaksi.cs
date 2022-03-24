@@ -9,14 +9,17 @@ namespace _20160140049_Tugas2_A
 {
     class Transaksi
     {
-        public void DisplayCustomer()
+        public void DisplayMenuTransaksi()
         {
             int menu;
-            Console.WriteLine("Menu :");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Transaksi :");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
-            Console.WriteLine("1. Tambah Customer");
-            Console.WriteLine("2. Daftar Customer");
-            Console.WriteLine("3. Kembali ke Menu awal");
+            Console.WriteLine("1. Sewa Toko");
+            Console.WriteLine("2. Daftar Sewa");
+            Console.WriteLine("3. Kembali Menu Transaksi");
+            Console.WriteLine("4. Kembali ke Home");
             Console.WriteLine("");
             Console.Write("Pilih Menu 1/2/3 : ");
             menu = Convert.ToInt32(Console.ReadLine());
@@ -24,7 +27,25 @@ namespace _20160140049_Tugas2_A
             {
                 Console.Clear();
                 new Program().Tampilan();
-                new Customer().TambahCustomer();
+                new Transaksi().SewaToko();
+            }
+            else if (menu == 2)
+            {
+                Console.Clear();
+                new Program().Tampilan();
+                Console.WriteLine("Belum ada data");
+            }
+            else if (menu == 3)
+            {
+                Console.Clear();
+                new Program().Tampilan();
+                new Customer().DisplayMenuCustomer();
+            }
+            else if (menu == 4)
+            {
+                Console.Clear();
+                new Program().Tampilan();
+                new Program().Menu();
             }
             else
             {
@@ -32,18 +53,20 @@ namespace _20160140049_Tugas2_A
             }
             Console.ReadLine();
         }
-        public void TambahCustomer()
+        public void SewaToko()
         {
 
-            Console.WriteLine("Tambah :");
-            Console.Write("ID_Customer   : ");
+            Console.WriteLine("Sewa Toko :");
+            Console.Write("ID_Transaksi   : ");
+            int idTransaksi = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Biaya : ");
+            int biaya = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Lama Kontrak : ");
+            string kontrak = Convert.ToString(Console.ReadLine());
+            Console.Write("ID Toko : ");
+            int idToko = Convert.ToInt32(Console.ReadLine());
+            Console.Write("ID Customer : ");
             int idCustomer = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Nama Customer : ");
-            string nama = Convert.ToString(Console.ReadLine());
-            Console.Write("Alamat : ");
-            string alamat = Convert.ToString(Console.ReadLine());
-            Console.Write("Jenis Kelamin (L/P): ");
-            string jenis = Convert.ToString(Console.ReadLine());
 
             try
             {
@@ -51,14 +74,14 @@ namespace _20160140049_Tugas2_A
                  "database=Tugas2PABD; Integrated Security=True; User ID=sa;Password=mentepermaib20");
                 con.Open();
 
-                SqlCommand sql = new SqlCommand("insert into dbo.Customer (ID_Customer,NamaCustomer,Alamat,Jenis_Kelamin) values ('" + idCustomer + "', '" + nama + "', '" + alamat + "', '" + jenis + "')", con);
+                SqlCommand sql = new SqlCommand("insert into dbo.Customer (ID_Customer,NamaCustomer,Alamat,Jenis_Kelamin) values ('" + idTransaksi + "', '" + biaya + "', '" + kontrak + "', '" + idCustomer + "', '" + idToko + "')", con);
                 sql.ExecuteNonQuery();
                 Console.WriteLine("Data berhasil ditambahkan");
                 con.Close();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Gagal menambahkan data customer");
+                Console.WriteLine("Gagal menambahkan data Kontrak");
                 Console.ReadKey();
             }
             Console.WriteLine("1. Kembali ke Menu awal");
@@ -67,7 +90,7 @@ namespace _20160140049_Tugas2_A
             {
                 Console.Clear();
                 new Program().Tampilan();
-                new Customer().DisplayCustomer();
+                new Transaksi().DisplayMenuTransaksi();
             }
 
 

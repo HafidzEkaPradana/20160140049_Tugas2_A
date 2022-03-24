@@ -10,14 +10,17 @@ namespace _20160140049_Tugas2_A
 
     class Customer
     {
-        public void DisplayCustomer()
+        public void DisplayMenuCustomer()
         {
             int menu;
-            Console.WriteLine("Menu :");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Customer :");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
             Console.WriteLine("1. Tambah Customer");
             Console.WriteLine("2. Daftar Customer");
-            Console.WriteLine("3. Kembali ke Menu awal");
+            Console.WriteLine("3. Kembali Menu Customer");
+            Console.WriteLine("4. Kembali ke Home");
             Console.WriteLine("");
             Console.Write("Pilih Menu 1/2/3 : ");
             menu = Convert.ToInt32(Console.ReadLine());
@@ -27,9 +30,33 @@ namespace _20160140049_Tugas2_A
                 new Program().Tampilan();
                 new Customer().TambahCustomer();
             }
+            else if (menu == 2)
+            {
+                Console.Clear();
+                new Program().Tampilan();
+                Console.WriteLine("Belum ada data");
+            }
+            else if (menu == 3)
+            {
+                Console.Clear();
+                new Program().Tampilan();
+                new Customer().DisplayMenuCustomer();
+            }
+            else if (menu == 4)
+            {
+                Console.Clear();
+                new Program().Tampilan();
+                new Program().Menu();
+            }
             else
             {
                 Console.WriteLine("Tidak ada menu tersebut");
+                Console.WriteLine("Tidak ada menu tersebut");
+                Console.WriteLine("Tekan tombol apapun untuk kembali");
+                Console.ReadKey();
+                Console.Clear();
+                new Program().Tampilan();
+                new Program().Menu();
             }
             Console.ReadLine();
         }
@@ -68,7 +95,7 @@ namespace _20160140049_Tugas2_A
             {
                 Console.Clear();
                 new Program().Tampilan();
-                new Customer().DisplayCustomer();
+                new Customer().DisplayMenuCustomer();
             }
 
 

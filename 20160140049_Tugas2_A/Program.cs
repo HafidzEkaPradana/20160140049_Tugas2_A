@@ -50,6 +50,7 @@ namespace _20160140049_Tugas2_A
             int menu;
             Console.WriteLine();
             Console.WriteLine("Menu : ");
+            Console.WriteLine();
             Console.WriteLine("1. Customer");
             Console.WriteLine("2. Toko");
             Console.WriteLine("3. Sewa");
@@ -60,7 +61,18 @@ namespace _20160140049_Tugas2_A
             {
                 Console.Clear();
                 new Program().Tampilan();
-                new Customer().DisplayCustomer();
+                new Customer().DisplayMenuCustomer();
+            }else if(menu == 2)
+            {
+                Console.Clear();
+                new Program().Tampilan();
+                new Toko().DisplayMenuToko();
+            }
+            else if(menu == 3)
+            {
+                Console.Clear();
+                new Program().Tampilan();
+                new Transaksi().DisplayMenuTransaksi();
             }
             else
             {
